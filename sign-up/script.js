@@ -128,7 +128,11 @@ function SubmitUserData(e) {
 
                 }
             } else {
+                // localStorage.setItem("email", update.email);
                 console.log(update);
+                console.log(update.email);
+                localStorage.setItem("email", update.email);
+                window.location.href = '../success/success.html';
             }
 
         }).catch(e => {
