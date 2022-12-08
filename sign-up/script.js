@@ -108,12 +108,18 @@ function SubmitUserData(e) {
             // console.log(update);
             if (update.errors) {
 
+                console.log(update.errors);
                 console.log(update.errors.password);
-                const listOfPasswordErrors = update.errors.password
+
+                const listOfPasswordErrors = update.errors.password;
+
                 const passwordError = document.getElementById('password-error');
-                passwordError.style.display='block';
+                passwordError.style.display = 'block';
+
+                passwordError.innerText = "";
 
                 for (let index = 0; index < listOfPasswordErrors.length; index++) {
+
                     const node = document.createElement("span");
                     node.classList.add('left-align');
                     const nodeText = document.createTextNode(listOfPasswordErrors[index]);
@@ -122,7 +128,7 @@ function SubmitUserData(e) {
 
                 }
             } else {
-
+                console.log(update);
             }
 
         }).catch(e => {
