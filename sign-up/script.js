@@ -69,24 +69,24 @@ function SubmitUserData(e) {
 
     //  Creating object data to be posted:
 
-    // const update = {
-    //     username: userName.value,
-    //     email: userEmail.value,
-    //     password: userPassword.value,
-    //     password_confirmation: userConfirmPassword.value
-    // };
+    const update = {
+        username: userName.value,
+        email: userEmail.value,
+        password: userPassword.value,
+        password_confirmation: userConfirmPassword.value
+    };
 
     // using constant Data:
 
-    const update = {
-        username: "ahmed0saber",
-        email: "ahmed0saber.com",
-        password: "123456789",
-        password_confirmation: "123456789"
-    }
+    // const update = {
+    //     username: "ahmed0saber",
+    //     email: "ahmed0saber.com",
+    //     password: "123456789",
+    //     password_confirmation: "123456789"
+    // }
 
     console.table(update);
-    
+
     const options = {
         method: 'POST',
         headers: {
