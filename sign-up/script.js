@@ -96,11 +96,14 @@ function SubmitUserData(e) {
         body: JSON.stringify(update),
     };
 
+    console.log(options.body);
+
     fetch('https://goldblv.com/api/hiring/tasks/register', options)
         .then(data => {
             if (!data.ok) {
                 throw Error(data.status);
             }
+
             return data.json();
         }).then(update => {
             console.log(update);
