@@ -82,7 +82,11 @@ div[class*='-error']  {
     text-align: left;
 }
 
-
+.left-align{
+    text-align: left;
+    color: red;
+    font-size: .8rem;
+}
 
 input:focus {
     outline: none !important;

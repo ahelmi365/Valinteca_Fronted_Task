@@ -85,7 +85,7 @@ function SubmitUserData(e) {
     //     password_confirmation: "123456789"
     // }
 
-    console.table(update);
+    // console.table(update);
 
     const options = {
         method: 'POST',
@@ -96,17 +96,35 @@ function SubmitUserData(e) {
         body: JSON.stringify(update),
     };
 
-    console.log(options.body);
 
     fetch('https://goldblv.com/api/hiring/tasks/register', options)
         .then(data => {
-            if (!data.ok) {
-                throw Error(data.status);
-            }
-
+            // if (!data.ok) {
+            //     console.log(data);
+            //     throw Error(data.status);
+            // }
             return data.json();
         }).then(update => {
-            console.log(update);
+            // console.log(update);
+            if (update.errors) {
+
+                console.log(update.errors.password);
+                const listOfPasswordErrors = update.errors.password
+                const passwordError = document.getElementById('password-error');
+                passwordError.style.display='block';
+
+                for (let index = 0; index < listOfPasswordErrors.length; index++) {
+                    const node = document.createElement("span");
+                    node.classList.add('left-align');
+                    const nodeText = document.createTextNode(listOfPasswordErrors[index]);
+                    node.appendChild(nodeText);
+                    passwordError.appendChild(node)
+
+                }
+            } else {
+
+            }
+
         }).catch(e => {
             console.log(e);
         });
