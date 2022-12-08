@@ -2,10 +2,10 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
     <title>Valinteca Signup</title>
 </head>
 
@@ -13,35 +13,77 @@
     <div class="container">
         <div class="main-content">
             <div class="sign-up-img">
-                <img src="../images/register.png" alt="Image to register">
+                <img src="../images/register.png" alt="Image to register" />
             </div>
 
             <div class="sign-up-form">
                 <h1>Create Account</h1>
                 <p>Go ahead and sign up, let everyone know how awesome you are!</p>
 
-                <form action="" method="post" class="register-form">
-
+                <form action="application/json" method="post" class="register-form" name="userForm">
+                    <!-- UserName -->
                     <div class="username field-control">
-                        <div class="field-icon"><img src="../images/user-icon.png" alt=""></div>
-                        <input type="text" name="userName" id="userName" placeholder="Username">
+                        <div class="field-icon">
+                            <img src="../images/user-icon.png" alt="" />
+                        </div>
+                        <input type="text" name="userName" id="userName" placeholder="Username" required minlength="5"
+                            maxlength="15" pattern="[a-zA-z]+[0-9]*[a-zA-z]+" 
+                            onkeypress="return preventSpecialChars(event)"/>
+                    </div>
+                    <div class="userName-error" id="userName-error">
+                        <span>
+                            Username must consist of 5 to 15 characters.<br>
+                            Only letters and numbers are allowed.<br>
+                            With no numbers at the beginning or the end.
+                        </span>
                     </div>
 
+                    <!-- Email -->
                     <div class="email field-control">
-                        <div class="field-icon"><img src="../images/email-icon.png" alt=""></div>
-                        <input type="email" name="email" id="email" placeholder="Email">
+                        <div class="field-icon">
+                            <img src="../images/email-icon.png" alt="" />
+                        </div>
+                        <input type="email" name="email" id="email" placeholder="Email" required
+                            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" />
+                    </div>
+                    <div class="email-error" id="email-error">
+                        <span>
+                            Please enter a valid email "xyz@example.com".
+                        </span>
+                    </div>
+
+                    <!-- Password -->
+                    <div class="password field-control">
+                        <div class="field-icon">
+                            <img src="../images/password-icon.png" alt="" />
+                        </div>
+                        <input type="password" name="password" id="password" placeholder="Password" required
+                            pattern=".{8,}" />
+                    </div>
+                    <div class="password-error" id="password-error">
+                        <span>
+                            Password must be at least 8 characters.
+                        </span>
                     </div>
 
 
-                    <div class="passowrd field-control">
-                        <div class="field-icon"><img src="../images/passowrd-icon.png" alt=""></div>
-                        <input type="passowrd" name="passowrd" id="passowrd" placeholder="Passowrd">
+                    <!-- Confirm Password -->
+                    <div class="confirm-password field-control">
+                        <div class="field-icon">
+                            <img src="../images/password-icon.png" alt="" />
+                        </div>
+                        <input type="password" name="confirm-password" id="confirm-password"
+                            placeholder="Confirm password" required pattern=".{8,}" />
+                    </div>
+                    <div class="confirm-password-error" id="confirm-password-error">
+                        <span>
+                            Password must be at least 8 characters.                        </span>
                     </div>
 
-                    <div class="confirm-passowrd field-control">
-                        <div class="field-icon"><img src="../images/passowrd-icon.png" alt=""></div>
-                        <input type="confirm-passowrd" name="confirm-passowrd" id="confirm-passowrd"
-                            placeholder="Confirm passowrd">
+                    <div class="confirm-password-error" id="confirm-password-error-match">
+                        <span>
+                            Please match the password you entered earlier.
+                        </span>
                     </div>
 
                     <div class="submit">
@@ -51,6 +93,7 @@
             </div>
         </div>
     </div>
+    <script src="script.js"></script>
 </body>
 
 </html>

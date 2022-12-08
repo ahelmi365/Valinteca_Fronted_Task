@@ -73,6 +73,16 @@ input {
 
 }
 
+div[class*='-error']  {
+    display: none;
+    width: 100%;
+    color: red;
+    font-size: .8rem;
+    text-align: left;
+}
+
+
+
 input:focus {
     outline: none !important;
     border: 1px solid #DBE3FF;
@@ -154,5 +164,11 @@ button {
         height: 80%;
     }
 
- 
+
+    .sign-up-form h1,
+    .sign-up-form p {
+        /* text-align: left; */
+        align-self: flex-start;
+    }
+
 }

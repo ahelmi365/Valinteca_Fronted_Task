@@ -78,6 +78,11 @@ body {
 
     }
 
+    .success-text p {
+       align-self: flex-start;
+    }
+
+
 
 
 }
