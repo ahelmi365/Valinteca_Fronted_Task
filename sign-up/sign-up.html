@@ -21,25 +21,26 @@
                 <p>Go ahead and sign up, let everyone know how awesome you are!</p>
 
                 <!-- UserForm Starts here -->
+
                 <form action="https://goldblv.com/api/hiring/tasks/register" method="POST" class="register-form"
-                    name="userForm" onsubmit="SubmitUserData(event)">
-                <!-- <form method="POST" class="register-form" name="userForm" onsubmit="SubmitUserData(event)"> -->
+                    name="userForm" onsubmit="SubmitUserData(event)" aria-label=""User Form>
+                    <!-- <form method="POST" class="register-form" name="userForm" onsubmit="SubmitUserData(event)"> -->
 
                     <!-- UserName -->
                     <div class="username field-control">
                         <div class="field-icon">
                             <img src="../images/user-icon.png" alt="" />
                         </div>
-                        <input type="text" name="username" id="userName" placeholder="Username" required minlength="5"
+                        <input type="text" name="username" id="username" placeholder="Username" required minlength="5"
                             maxlength="15" pattern="[a-zA-z]+[0-9]*[a-zA-z]+"
-                            onkeypress="return preventSpecialChars(event)" />
+                            onkeypress="return preventSpecialChars(event)"  aria-label="Usre Name"/>
                     </div>
-                    <div class="userName-error" id="userName-error">
-                        <span>
+                    <div class="userName-error" id="username-error">
+                        <div class="left-align">
                             Username must consist of 5 to 15 characters.<br>
                             Only letters and numbers are allowed.<br>
                             With no numbers at the beginning or the end.
-                        </span>
+                        </div>
                     </div>
 
                     <!-- Email -->
@@ -48,12 +49,12 @@
                             <img src="../images/email-icon.png" alt="" />
                         </div>
                         <input type="email" name="email" id="email" placeholder="Email" required
-                            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" />
+                            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" aria-label="User Email"/>
                     </div>
                     <div class="email-error" id="email-error">
-                        <span>
+                        <div class="left-align">
                             Please enter a valid email "xyz@example.com".
-                        </span>
+                        </div>
                     </div>
 
                     <!-- Password -->
@@ -62,12 +63,12 @@
                             <img src="../images/password-icon.png" alt="" />
                         </div>
                         <input type="password" name="password" id="password" placeholder="Password" required
-                            pattern=".{8,}" />
+                            pattern=".{8,}" aria-label="User Password" />
                     </div>
                     <div class="password-error" id="password-error">
-                        <span>
+                        <div class="left-align">
                             Password must be at least 8 characters.
-                        </span>
+                        </div>
                     </div>
 
                     <!-- Confirm Password -->
@@ -76,17 +77,18 @@
                             <img src="../images/password-icon.png" alt="" />
                         </div>
                         <input type="password" name="password_confirmation" id="confirm-password"
-                            placeholder="Confirm password" required pattern=".{8,}" />
+                            placeholder="Confirm password" required pattern=".{8,}" aria-label="User Password Confirmation" />
                     </div>
                     <div class="confirm-password-error" id="confirm-password-error">
-                        <span>
-                            Password must be at least 8 characters. </span>
+                        <div class="left-align">
+                            Password must be at least 8 characters.
+                        </div>
                     </div>
 
                     <div class="confirm-password-error" id="confirm-password-error-match">
-                        <span>
+                        <div class="left-align">
                             Please match the password you entered earlier.
-                        </span>
+                        </div>
                     </div>
 
                     <!-- Submit Button -->

@@ -1,7 +1,7 @@
 const userForm = document.forms['userForm'];
 
 // get form elements
-const userName = userForm['userName'];
+const userName = userForm['username'];
 const userEmail = userForm['email'];
 const userPassword = userForm['password'];
 const userConfirmPassword = userForm['confirm-password'];
@@ -58,9 +58,6 @@ function preventSpecialChars(e) {
 
 // ============================================================
 
-// Get form data as an object
-
-
 // the API call:
 
 function SubmitUserData(e) {
@@ -68,24 +65,12 @@ function SubmitUserData(e) {
     e.preventDefault();
 
     //  Creating object data to be posted:
-
     const update = {
         username: userName.value,
         email: userEmail.value,
         password: userPassword.value,
         password_confirmation: userConfirmPassword.value
     };
-
-    // using constant Data:
-
-    // const update = {
-    //     username: "ahmed0saber",
-    //     email: "ahmed0saber.com",
-    //     password: "123456789",
-    //     password_confirmation: "123456789"
-    // }
-
-    // console.table(update);
 
     const options = {
         method: 'POST',
@@ -96,41 +81,13 @@ function SubmitUserData(e) {
         body: JSON.stringify(update),
     };
 
-
     fetch('https://goldblv.com/api/hiring/tasks/register', options)
         .then(data => {
-            // if (!data.ok) {
-            //     console.log(data);
-            //     throw Error(data.status);
-            // }
             return data.json();
         }).then(update => {
-            // console.log(update);
             if (update.errors) {
-
-                console.log(update.errors);
-                console.log(update.errors.password);
-
-                const listOfPasswordErrors = update.errors.password;
-
-                const passwordError = document.getElementById('password-error');
-                passwordError.style.display = 'block';
-
-                passwordError.innerText = "";
-
-                for (let index = 0; index < listOfPasswordErrors.length; index++) {
-
-                    const node = document.createElement("span");
-                    node.classList.add('left-align');
-                    const nodeText = document.createTextNode(listOfPasswordErrors[index]);
-                    node.appendChild(nodeText);
-                    passwordError.appendChild(node)
-
-                }
+                addErrorMessage(update.errors);
             } else {
-                // localStorage.setItem("email", update.email);
-                console.log(update);
-                console.log(update.email);
                 localStorage.setItem("email", update.email);
                 window.location.href = '../success/success.html';
             }
@@ -138,5 +95,30 @@ function SubmitUserData(e) {
         }).catch(e => {
             console.log(e);
         });
+}
+
+// Function to check show error messages from API
+function addErrorMessage(errors) {
+
+    for (const error in errors) { // error =username, email, password
+
+        const elementError = document.getElementById(`${error}-error`);
+
+        elementError.style.display = 'block';
+        elementError.innerText = "";
+
+        for (const errorElm of errors[`${String(error)}`]) {
+            const node = document.createElement("div");
+            node.classList.add('left-align');
+
+            const nodeText = document.createTextNode(errorElm);
+            node.appendChild(nodeText);
+            elementError.appendChild(node);
+
+        }
+
+    }
+
+
 }
 

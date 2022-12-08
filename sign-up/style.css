@@ -76,16 +76,19 @@ input {
 
 div[class*='-error']  {
     display: none;
-    width: 100%;
+    /* width: 100%; */
+    max-width: 415px;
     color: red;
     font-size: .8rem;
     text-align: left;
+    
 }
 
 .left-align{
     text-align: left;
     color: red;
     font-size: .8rem;
+    width: 415px;
 }
 
 input:focus {
