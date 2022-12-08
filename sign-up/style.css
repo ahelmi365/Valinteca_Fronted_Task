@@ -77,10 +77,11 @@ input {
 div[class*='-error']  {
     display: none;
     /* width: 100%; */
-    max-width: 415px;
+    max-width: 300px;
     color: red;
     font-size: .8rem;
     text-align: left;
+    align-self: flex-start;
     
 }
 
@@ -88,7 +89,7 @@ div[class*='-error']  {
     text-align: left;
     color: red;
     font-size: .8rem;
-    width: 415px;
+    width: 300px;
 }
 
 input:focus {
