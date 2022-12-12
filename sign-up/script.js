@@ -1,3 +1,6 @@
+import { User } from "./User.js";
+
+
 const userForm = document.forms['userForm'];
 
 // get form elements
@@ -45,7 +48,7 @@ function checkPasswordMatch(e) {
 // ============================================================
 
 // function to prevent special characters
-function preventSpecialChars(e) {
+export function preventSpecialChars(e) {
     const iChars = "_~!@#$%^&*()+=-[]\\\';,./{}|\":<>?";
     const ch = e.key;
 
@@ -56,39 +59,51 @@ function preventSpecialChars(e) {
     }
 }
 
+window.preventSpecialChars = preventSpecialChars;
+
 // ============================================================
 
 // the API call:
 
-function SubmitUserData(e) {
+export function SubmitUserData(e) {
 
     e.preventDefault();
 
-    //  Creating object data to be posted:
-    const update = {
-        username: userName.value,
-        email: userEmail.value,
-        password: userPassword.value,
-        password_confirmation: userConfirmPassword.value
-    };
+    //  Creating object of user data to be posted:
+    // const update = {
+    //     username: userName.value,
+    //     email: userEmail.value,
+    //     password: userPassword.value,
+    //     password_confirmation: userConfirmPassword.value
+    // };
 
+
+    // create instace of User Object (Using OOP)
+    const newUser = new User(userName.value, userEmail.value, userPassword.value, userConfirmPassword.value);
+    // console.log(newUser);
+
+    const URL = 'https://goldblv.com/api/hiring/tasks/register'
     const options = {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json'
         },
-        body: JSON.stringify(update),
+        body: JSON.stringify(newUser),
     };
 
-    fetch('https://goldblv.com/api/hiring/tasks/register', options)
-        .then(data => {
-            return data.json();
-        }).then(update => {
-            if (update.errors) {
-                addErrorMessage(update.errors);
+    fetch(URL, options)
+        .then(res => {
+            console.log(res);
+            return res.json();
+        }).then(data => {
+            if (data.errors) {
+                console.log(data);
+                addErrorMessage(data.errors);
             } else {
-                localStorage.setItem("email", update.email);
+                // console.log(data);
+                localStorage.setItem("email", data.email);
+                // console.log(localStorage.getItem("email"));
                 window.location.href = '../success/success.html';
             }
 
@@ -97,22 +112,28 @@ function SubmitUserData(e) {
         });
 }
 
-// Function to check show error messages from API
+window.SubmitUserData = SubmitUserData;
+
+// ============================================================
+
+// Function to show error messages from API
 function addErrorMessage(errors) {
 
-    for (const error in errors) { // error =username, email, password
+    for (const error in errors) { // error =[username, email, password]
 
         const elementError = document.getElementById(`${error}-error`);
 
         elementError.style.display = 'block';
         elementError.innerText = "";
 
-        for (const errorElm of errors[`${String(error)}`]) {
+        for (const errorMessage of errors[`${String(error)}`]) {
+
             const node = document.createElement("div");
             node.classList.add('left-align');
 
-            const nodeText = document.createTextNode(errorElm);
+            const nodeText = document.createTextNode(errorMessage);
             node.appendChild(nodeText);
+
             elementError.appendChild(node);
 
         }

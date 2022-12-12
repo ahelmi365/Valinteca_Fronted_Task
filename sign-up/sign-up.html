@@ -21,10 +21,8 @@
                 <p>Go ahead and sign up, let everyone know how awesome you are!</p>
 
                 <!-- UserForm Starts here -->
-
                 <form action="https://goldblv.com/api/hiring/tasks/register" method="POST" class="register-form"
-                    name="userForm" onsubmit="SubmitUserData(event)" aria-label=""User Form>
-                    <!-- <form method="POST" class="register-form" name="userForm" onsubmit="SubmitUserData(event)"> -->
+                    name="userForm" onsubmit="window.SubmitUserData(event)" aria-label="User Form">
 
                     <!-- UserName -->
                     <div class="username field-control">
@@ -33,7 +31,7 @@
                         </div>
                         <input type="text" name="username" id="username" placeholder="Username" required minlength="5"
                             maxlength="15" pattern="[a-zA-z]+[0-9]*[a-zA-z]+"
-                            onkeypress="return preventSpecialChars(event)"  aria-label="Usre Name"/>
+                            onkeypress="return window.preventSpecialChars(event)" aria-label="Usre Name" />
                     </div>
                     <div class="userName-error" id="username-error">
                         <div class="left-align">
@@ -49,7 +47,7 @@
                             <img src="../images/email-icon.png" alt="" />
                         </div>
                         <input type="email" name="email" id="email" placeholder="Email" required
-                            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" aria-label="User Email"/>
+                            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" aria-label="User Email" />
                     </div>
                     <div class="email-error" id="email-error">
                         <div class="left-align">
@@ -77,7 +75,8 @@
                             <img src="../images/password-icon.png" alt="" />
                         </div>
                         <input type="password" name="password_confirmation" id="confirm-password"
-                            placeholder="Confirm password" required pattern=".{8,}" aria-label="User Password Confirmation" />
+                            placeholder="Confirm password" required pattern=".{8,}"
+                            aria-label="User Password Confirmation" />
                     </div>
                     <div class="confirm-password-error" id="confirm-password-error">
                         <div class="left-align">
@@ -99,7 +98,10 @@
             </div>
         </div>
     </div>
-    <script src="script.js"></script>
+
+    <script src="User.js" type="module"></script>
+    <script src="script.js" type="module"></script>
+
 </body>
 
 </html>
