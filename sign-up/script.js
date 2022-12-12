@@ -99,7 +99,6 @@ function SubmitUserData(e) {
             } else {
                 // console.log(data);
                 localStorage.setItem("email", jsonUserData.email);
-                // console.log(localStorage.getItem("email"));
                 window.location.href = '../success/success.html';
             }
         }).catch(e => {
@@ -112,14 +111,15 @@ function SubmitUserData(e) {
 
 // Function to show error messages from API
 function addErrorMessage(errors) {
-    for (const error in errors) { // error =[username, email, password]
+
+    for (const error in errors) { // errors ={username:[], email:[], password:[], password_confirmation:[]}
 
         const elementError = document.getElementById(`${error}-error`);
 
         elementError.style.display = 'block';
         elementError.innerText = "";
 
-        for (const errorMessage of errors[`${String(error)}`]) {
+        for (const errorMessage of errors[error]) {
 
             const node = document.createElement("div");
             node.classList.add('left-align');
