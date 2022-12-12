@@ -66,14 +66,11 @@ function preventSpecialChars(e) {
 
 // ============================================================
 
-
 // on From Submit:
 userForm.addEventListener('submit', SubmitUserData);
 
-
 // function to run on Form Submit
 function SubmitUserData(e) {
-
     e.preventDefault();
 
     // create instace of User Object (Using OOP)
@@ -105,7 +102,6 @@ function SubmitUserData(e) {
                 // console.log(localStorage.getItem("email"));
                 window.location.href = '../success/success.html';
             }
-
         }).catch(e => {
             console.log(e);
         });
@@ -116,7 +112,6 @@ function SubmitUserData(e) {
 
 // Function to show error messages from API
 function addErrorMessage(errors) {
-
     for (const error in errors) { // error =[username, email, password]
 
         const elementError = document.getElementById(`${error}-error`);
