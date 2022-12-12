@@ -22,7 +22,8 @@
 
                 <!-- UserForm Starts here -->
                 <form action="https://goldblv.com/api/hiring/tasks/register" method="POST" class="register-form"
-                    name="userForm" onsubmit="window.SubmitUserData(event)" aria-label="User Form">
+                    name="userForm" aria-label="User Form">
+                    <!-- name="userForm" onsubmit="window.SubmitUserData(event)" aria-label="User Form"> -->
 
                     <!-- UserName -->
                     <div class="username field-control">
@@ -30,8 +31,8 @@
                             <img src="../images/user-icon.png" alt="" />
                         </div>
                         <input type="text" name="username" id="username" placeholder="Username" required minlength="5"
-                            maxlength="15" pattern="[a-zA-z]+[0-9]*[a-zA-z]+"
-                            onkeypress="return window.preventSpecialChars(event)" aria-label="Usre Name" />
+                            maxlength="15" pattern="[a-zA-z]+[0-9]*[a-zA-z]+" aria-label="Usre Name" />
+                        <!-- onkeypress="return preventSpecialChars(event)" aria-label="Usre Name" /> -->
                     </div>
                     <div class="userName-error" id="username-error">
                         <div class="left-align">

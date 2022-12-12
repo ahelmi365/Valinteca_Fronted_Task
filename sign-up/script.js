@@ -1,21 +1,18 @@
 import { User } from "./User.js";
 
-
 const userForm = document.forms['userForm'];
 
-// get form elements
+// get all form elements
 const userName = userForm['username'];
 const userEmail = userForm['email'];
 const userPassword = userForm['password'];
 const userConfirmPassword = userForm['confirm-password'];
 
-// add event listener to all form elements
+// add event listener to all form elements to check validity
 userName.addEventListener('keyup', checkInputValidity);
-
 userEmail.addEventListener('keyup', checkInputValidity);
 userPassword.addEventListener('keyup', checkInputValidity);
 userConfirmPassword.addEventListener('keyup', checkInputValidity);
-userConfirmPassword.addEventListener('keyup', checkPasswordMatch);
 
 // ============================================================
 
@@ -32,6 +29,8 @@ function checkInputValidity(e) {
 
 // ============================================================
 
+// check if both passwords are the same
+userConfirmPassword.addEventListener('keyup', checkPasswordMatch);
 
 // function to check if both passwords are the same
 function checkPasswordMatch(e) {
@@ -47,36 +46,35 @@ function checkPasswordMatch(e) {
 
 // ============================================================
 
+// prevent special characters in userName input field:
+userName.addEventListener('keypress', preventSpecialChars);
+
 // function to prevent special characters
-export function preventSpecialChars(e) {
+function preventSpecialChars(e) {
+    // console.log(e.key);
     const iChars = "_~!@#$%^&*()+=-[]\\\';,./{}|\":<>?";
     const ch = e.key;
 
     if (iChars.indexOf(ch) != -1) {
+
+        e.preventDefault()
         return false
     } else {
         return e.key;
     }
 }
 
-window.preventSpecialChars = preventSpecialChars;
-
 // ============================================================
 
-// the API call:
 
-export function SubmitUserData(e) {
+// on From Submit:
+userForm.addEventListener('submit', SubmitUserData);
+
+
+// function to run on Form Submit
+function SubmitUserData(e) {
 
     e.preventDefault();
-
-    //  Creating object of user data to be posted:
-    // const update = {
-    //     username: userName.value,
-    //     email: userEmail.value,
-    //     password: userPassword.value,
-    //     password_confirmation: userConfirmPassword.value
-    // };
-
 
     // create instace of User Object (Using OOP)
     const newUser = new User(userName.value, userEmail.value, userPassword.value, userConfirmPassword.value);
@@ -92,6 +90,7 @@ export function SubmitUserData(e) {
         body: JSON.stringify(newUser),
     };
 
+    // the API call:
     fetch(URL, options) // returns a Promise
         .then(res => {
             // console.log(res);
@@ -112,7 +111,6 @@ export function SubmitUserData(e) {
         });
 }
 
-window.SubmitUserData = SubmitUserData;
 
 // ============================================================
 
@@ -135,11 +133,8 @@ function addErrorMessage(errors) {
             node.appendChild(nodeText);
 
             elementError.appendChild(node);
-
         }
-
     }
-
 
 }
 
