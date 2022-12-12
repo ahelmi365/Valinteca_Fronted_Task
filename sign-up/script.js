@@ -95,14 +95,14 @@ export function SubmitUserData(e) {
     fetch(URL, options)
         .then(res => {
             console.log(res);
-            return res.json();
-        }).then(data => {
-            if (data.errors) {
-                console.log(data);
-                addErrorMessage(data.errors);
+            return res.json(); // returns a Promise
+        }).then(jsonUserData => {
+            if (jsonUserData.errors) {
+                console.log(jsonUserData);
+                addErrorMessage(jsonUserData.errors);
             } else {
                 // console.log(data);
-                localStorage.setItem("email", data.email);
+                localStorage.setItem("email", jsonUserData.email);
                 // console.log(localStorage.getItem("email"));
                 window.location.href = '../success/success.html';
             }
