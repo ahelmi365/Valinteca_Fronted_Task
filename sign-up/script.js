@@ -92,13 +92,13 @@ export function SubmitUserData(e) {
         body: JSON.stringify(newUser),
     };
 
-    fetch(URL, options)
+    fetch(URL, options) // returns a Promise
         .then(res => {
-            console.log(res);
+            // console.log(res);
             return res.json(); // returns a Promise
         }).then(jsonUserData => {
             if (jsonUserData.errors) {
-                console.log(jsonUserData);
+                // console.log(jsonUserData);
                 addErrorMessage(jsonUserData.errors);
             } else {
                 // console.log(data);
